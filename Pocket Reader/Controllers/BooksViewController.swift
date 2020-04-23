@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 class BooksViewController: UIViewController {
     
@@ -177,8 +178,26 @@ extension BooksViewController {
             let snapshot = self.snapshot()
             let pickedItems = snapshot.itemIdentifiers(inSection: .activeNow)
             UserSettings.userBooks = pickedItems
+            
+            sendSelectedBooksToWatch()
+        }
+        
+        func sendSelectedBooksToWatch() {
+            if WCSession.isSupported() {
+                let pickedBooks = UserSettings.userBooks.map { (book) in
+                    return book.representation
+                }
+                
+                do {
+                    let dict: [String: Any] = ["books": pickedBooks]
+                    try WCSession.default.updateApplicationContext(dict)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
         }
     }
+
     
     func configureDataSource() {
         

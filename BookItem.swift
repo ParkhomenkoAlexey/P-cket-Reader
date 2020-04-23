@@ -55,6 +55,37 @@ class BookItem: NSObject, NSCoding {
         self.imageName = imageName
     }
     
+    init?(data: [String: Any]) {
+        guard let name = data["name"] as? String else { return nil }
+        guard let genre = GenreType(rawValue: data["genre"] as! String) else { return nil }
+        guard let author = data["author"] as? String else { return nil }
+        guard let edition = data["edition"] as? Int else { return nil }
+        guard let pages = data["pages"] as? Int else { return nil }
+        guard let bookDescription = data["bookDescription"] as? String else { return nil }
+        guard let imageName = data["imageName"] as? String else { return nil }
+        
+        self.name = name
+        self.genre = genre
+        self.author = author
+        self.edition = edition
+        self.pages = pages
+        self.bookDescription = bookDescription
+        self.imageName = imageName
+    }
+    
+    var representation: [String: Any] {
+        let rep: [String: Any] = [
+            "name": name,
+            "genre": genre.rawValue,
+            "author": author,
+            "edition": edition,
+            "pages": pages,
+            "bookDescription": bookDescription,
+            "imageName": imageName
+        ]
+        return rep
+    }
+    
     func encode(with coder: NSCoder) {
         coder.encode(name, forKey: "name")
         coder.encode(genre.rawValue, forKey:"genre")

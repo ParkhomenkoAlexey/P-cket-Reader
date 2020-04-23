@@ -130,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="336" y="214"/>
         </scene>
-        <!--Starter Interface Controller-->
+        <!--PickedBooks-->
         <scene sceneID="kFF-Ae-arA">
             <objects>
-                <controller id="DT8-VP-Sry" customClass="StarterInterfaceController" customModule="Pocket_Reader_WatchKit_Extension">
+                <controller identifier="PickedBooks" id="DT8-VP-Sry" customClass="StarterInterfaceController" customModule="Pocket_Reader_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="tV3-X5-EEd">
                             <items>
