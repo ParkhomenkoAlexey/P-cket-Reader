@@ -48,6 +48,7 @@ class BooksViewController: UIViewController {
     
     var dataSource: DataSource!
     var tableView: UITableView!
+    var notificationObserver: NSObjectProtocol?
     
     // MARK: - View Setup
     
@@ -58,6 +59,11 @@ class BooksViewController: UIViewController {
         setupElements()
         setupConstraints()
         configureDataSource()
+        
+        notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "GetBooksFromWatch"), object: nil, queue: nil, using: { (_) in
+            let snapshot = self.initialSnapshot()
+            self.dataSource.apply(snapshot, animatingDifferences: false)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {

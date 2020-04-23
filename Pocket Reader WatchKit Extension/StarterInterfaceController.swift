@@ -8,6 +8,7 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
 
 class StarterInterfaceController: WKInterfaceController {
@@ -30,10 +31,27 @@ class StarterInterfaceController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         setupTable()
+        sendSelectedBooksToPhone()
     }
 
     override func didDeactivate() {
         super.didDeactivate()
+    }
+    
+    func sendSelectedBooksToPhone() {
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            let pickedBooks = UserSettings.userBooks.map { (book) in
+                return book.representation
+            }
+            
+            do {
+                let dict: [String: Any] = ["books": pickedBooks]
+                try session.updateApplicationContext(dict)
+            } catch {
+                print("Error: \(error)")
+            }
+        }
     }
     
     
@@ -46,6 +64,7 @@ class StarterInterfaceController: WKInterfaceController {
     
     @IBAction func deleteAll() {
         UserSettings.userBooks = []
+        sendSelectedBooksToPhone()
         setupTable()
     }
 }
