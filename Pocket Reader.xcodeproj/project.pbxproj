@@ -155,8 +155,6 @@
 				F0B8A92F244A1101008A8E58 /* SceneDelegate.swift */,
 				F0B8A970244A127D008A8E58 /* Controllers */,
 				F0B8A971244A128B008A8E58 /* Extensions */,
-				F0B8A972244A129D008A8E58 /* Models */,
-				F0B8A973244A12AD008A8E58 /* Services */,
 				F0B8A933244A1101008A8E58 /* Main.storyboard */,
 				F0B8A936244A1103008A8E58 /* Assets.xcassets */,
 				F0B8A938244A1103008A8E58 /* LaunchScreen.storyboard */,
@@ -208,20 +206,6 @@
 				F0B8A96A244A1165008A8E58 /* StackView + Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		F0B8A972244A129D008A8E58 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F0B8A973244A12AD008A8E58 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
